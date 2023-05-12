@@ -2,6 +2,7 @@
 #define NEURALOFHE_RELU_H
 
 #include "Operator.h"
+#include <math.h>
 
 
 namespace nn {

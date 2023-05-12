@@ -10,6 +10,7 @@ add_library(NeuralOFHE
         Operator.cpp
         Conv2D.cpp
         ReLU.cpp
+        BatchNorm.cpp
 )
 
 target_include_directories(NeuralOFHE

@@ -1,7 +1,3 @@
-//
-// Created by lchenke on 12.05.23.
-//
-
 #ifndef NEURALOFHE_CONV2D_H
 #define NEURALOFHE_CONV2D_H
 
@@ -26,7 +22,6 @@ namespace nn {
         static uint32_t numConv;
 
         static std::string baseName;
-
     };
 }
 

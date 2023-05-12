@@ -1,8 +1,10 @@
 #include "ReLU.h"
 
+// Setting initial values for static variables
 uint32_t nn::ReLU::numReLU = 0;
 uint32_t nn::ReLU::sharedPolyDeg = 0;
 std::string nn::ReLU::baseName = "ReLU_";
+
 
 void nn::ReLU::setParams(double mi, double ma, uint32_t deg) {
     this->min = mi;
