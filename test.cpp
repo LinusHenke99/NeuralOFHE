@@ -33,20 +33,20 @@ int main() {
 
     InitializeCryptoEnvironment(context, 2);
 
-    nn::Conv2D conv(matrix, bias);
+    auto conv = AddOperation<nn::Conv2D>(matrix, bias);
 
     std::vector<double> vec = {0.3, 1.};
     Plaintext pl = context->MakeCKKSPackedPlaintext(vec);
     auto cipher = context->Encrypt(pl, keys.publicKey);
 
-    cipher = conv.forward(cipher);
+    cipher = conv->forward(cipher);
 
     context->Decrypt(keys.secretKey, cipher, &pl);
     pl->SetLength(2);
 
     std::cout << pl;
 
-    std::cout << "Name: " << conv.getName() << std::endl;
+    std::cout << "Name: " << conv->getName() << std::endl;
 
     return 0;
 }
