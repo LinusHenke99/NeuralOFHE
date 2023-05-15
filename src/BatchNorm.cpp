@@ -1,6 +1,5 @@
 #include "BatchNorm.h"
 
-std::string nn::BatchNorm::baseName = "BatchNorm_";
 uint32_t nn::BatchNorm::numBatchNorm = 0;
 double nn::BatchNorm::sharedEpsilon = .0;
 
@@ -17,19 +16,11 @@ void nn::BatchNorm::setParameters(std::vector<double> wei, std::vector<double> b
                   << "of the  BatchNorm class, or set a shared epsilon using the nn::BatchNorm::SetSharedEpsilon"
                   << "method." << std::endl;
     }
-
-    numBatchNorm++;
 }
 
 
 nn::BatchNorm::BatchNorm(std::vector<double> weights, std::vector<double> bias, double var,
-                         double mu, double epsilon) : Operator(numBatchNorm, baseName){
-    setParameters(weights, bias, var, mu, epsilon);
-}
-
-
-nn::BatchNorm::BatchNorm(std::vector<double> weights, std::vector<double> bias, double var, double mu,
-                         std::string name, double epsilon) : Operator(name) {
+                         double mu, std::string name, double epsilon) : Operator(numBatchNorm, name){
     setParameters(weights, bias, var, mu, epsilon);
 }
 
@@ -46,4 +37,9 @@ Ciphertext<DCRTPoly> nn::BatchNorm::forward(Ciphertext<lbcrypto::DCRTPoly> x) {
     x = context->EvalAdd(x, pl);
 
     return x;
+}
+
+
+void nn::BatchNorm::SetSharedEpsilon(double eps) {
+    sharedEpsilon = eps;
 }

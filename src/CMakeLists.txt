@@ -8,9 +8,11 @@ add_library(NeuralOFHE
         HelperFunctions.cpp
 
         Operator.cpp
+        Activation.cpp
         Conv2D.cpp
         ReLU.cpp
         BatchNorm.cpp
+        AveragePool.cpp
 )
 
 target_include_directories(NeuralOFHE

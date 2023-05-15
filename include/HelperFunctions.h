@@ -10,7 +10,7 @@ void InitializeCryptoEnvironment(CryptoContext<DCRTPoly> context, uint32_t batch
 
 template <typename Operation, typename... Args>
 extern std::shared_ptr<Operator> AddOperation (Args... args) {
-    std::shared_ptr<Operator> ptr = std::make_shared<Operation>(args...);
+    std::shared_ptr<Operator> ptr(std::make_shared<Operation>(args...));
 
     return ptr;
 }

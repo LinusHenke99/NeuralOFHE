@@ -17,8 +17,9 @@ int main() {
     params.SetBatchSize(2);
     params.SetScalingTechnique(FLEXIBLEAUTO);
     params.SetSecurityLevel(lbcrypto::HEStd_128_classic);
-    params.SetScalingModSize(30);
-    params.SetFirstModSize(35);
+    params.SetScalingModSize(50);
+    params.SetFirstModSize(60);
+    params.SetMultiplicativeDepth(15);
 
     CryptoContext<DCRTPoly> context = GenCryptoContext(params);
     context->Enable(PKE);
@@ -33,20 +34,35 @@ int main() {
 
     InitializeCryptoEnvironment(context, 2);
 
-    auto conv = AddOperation<nn::Conv2D>(matrix, bias);
-
     std::vector<double> vec = {0.3, 1.};
+
+    nn::ReLU::SetSharedDegree(3);
+    nn::BatchNorm::SetSharedEpsilon(0.0000001);
+
+    nn::Conv2D conv(matrix, bias);
+    nn::ReLU relu(-0.1, 0.1);
+    nn::BatchNorm batchnorm(bias, bias, 0.01, 0.1);
+    nn::ReLU relu2(-0.1, 0.1);
+
     Plaintext pl = context->MakeCKKSPackedPlaintext(vec);
     auto cipher = context->Encrypt(pl, keys.publicKey);
 
-    cipher = conv->forward(cipher);
+    std::cout << "Doing " << conv.getName() << std::endl;
+    cipher = conv.forward(cipher);
+
+    std::cout << "Doing " << relu.getName() << std::endl;
+    cipher = relu.forward(cipher);
+
+    std::cout << "Doing " << batchnorm.getName() << std::endl;
+    cipher = batchnorm.forward(cipher);
+
+    std::cout << "Doing " << relu2.getName() << std::endl;
+    cipher = relu2.forward(cipher);
 
     context->Decrypt(keys.secretKey, cipher, &pl);
     pl->SetLength(2);
 
     std::cout << pl;
-
-    std::cout << "Name: " << conv->getName() << std::endl;
 
     return 0;
 }

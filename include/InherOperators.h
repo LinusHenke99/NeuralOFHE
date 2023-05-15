@@ -7,5 +7,7 @@
 
 #include "Conv2D.h"
 #include "ReLU.h"
+#include "BatchNorm.h"
+#include "AveragePool.h"
 
 #endif //NEURALOFHE_INHEROPERATORS_H

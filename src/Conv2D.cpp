@@ -1,23 +1,16 @@
 #include "Conv2D.h"
 
 uint32_t nn::Conv2D::numConv = 0;
-std::string nn::Conv2D::baseName = "Conv2D_";
 
 
 void nn::Conv2D::setParams(std::vector<std::vector<double>> mat, std::vector<double> bia) {
     this->weights = mat;
     this->bias = bia;
-
-    numConv++;
 }
 
 
-nn::Conv2D::Conv2D(std::vector<std::vector<double>> weights, std::vector<double> bias) : Operator(numConv, baseName) {
-    setParams(weights, bias);
-}
-
-
-nn::Conv2D::Conv2D(std::vector<std::vector<double>> weights, std::vector<double> bias, std::string name) : Operator(name) {
+nn::Conv2D::Conv2D(std::vector<std::vector<double>> weights, std::vector<double> bias,
+                   std::string name) : Operator(numConv, name) {
     setParams(weights, bias);
 }
 

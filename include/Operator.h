@@ -9,9 +9,9 @@ using namespace lbcrypto;
 
 class Operator {
 public:
-    Operator(uint32_t objectCounter, std::string baseName);
+    Operator();
 
-    Operator(std::string name);
+    Operator(uint32_t& objectCounter, std::string name);
 
     virtual Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) = 0;
 
@@ -23,10 +23,10 @@ public:
 
 protected:
     static uint32_t currentBatchsize;
+    static uint32_t currentChannels;
     static CryptoContext<DCRTPoly> context;
 
     std::string name;
-
 };
 
 
