@@ -17,16 +17,17 @@ Operator::Operator(uint32_t& objectCounter, std::string name) {
 }
 
 
-void Operator::initialize(CryptoContext<lbcrypto::DCRTPoly> cc, uint32_t bs) {
+void Operator::initialize(CryptoContext<lbcrypto::DCRTPoly> cc, uint32_t bs, uint32_t channels) {
     context = cc;
     currentBatchsize = bs;
+    currentChannels = channels;
 }
 
 
 void Operator::isInitialized() {
     if (context == NULL && currentBatchsize == 0 && currentChannels == 0) {
-        std::cout << "You first have to assign a Cryptocontext, an initial input size to the Operator class." << std::endl;
-        std::cout << "Can be done by calling the InitializeCryptoEnvironment function" << std::endl;
+        std::cerr << "You first have to assign a Cryptocontext, an initial input size to the Operator class." << std::endl;
+        std::cerr << "Can be done by calling the InitializeCryptoEnvironment function" << std::endl;
         exit(1);
     }
 }

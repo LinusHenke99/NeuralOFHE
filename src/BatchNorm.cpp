@@ -12,9 +12,9 @@ void nn::BatchNorm::setParameters(std::vector<double> wei, std::vector<double> b
     this->epsilon = e;
 
     if (epsilon=.0) {
-        std::cout << "Setting epsilon to 0 is not recommended. You can either set a value for epsilon for each instance"
+        std::cerr << "Setting epsilon to 0 is not recommended. You can either set a value for epsilon for each instance"
                   << "of the  BatchNorm class, or set a shared epsilon using the nn::BatchNorm::SetSharedEpsilon"
-                  << "method." << std::endl;
+                  << "method. Epsilon is zero for " << name << "." << std::endl;
     }
 }
 

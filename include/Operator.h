@@ -2,8 +2,11 @@
 #define NEURALOFHE_OPERATOR_H
 
 #include <string>
+#include <vector>
 #include "LinTools.h"
 #include "openfhe.h"
+
+using matVec = std::vector<std::vector<double>>;
 
 using namespace lbcrypto;
 
@@ -15,7 +18,7 @@ public:
 
     virtual Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) = 0;
 
-    static void initialize(CryptoContext<DCRTPoly> cc, uint32_t bs);
+    static void initialize(CryptoContext<DCRTPoly> cc, uint32_t bs, uint32_t channels);
 
     void isInitialized();
 
