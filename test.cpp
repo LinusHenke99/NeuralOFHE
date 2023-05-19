@@ -1,6 +1,5 @@
 #include <iostream>
-#include "InherOperators.h"
-#include "HelperFunctions.h"
+#include "NeuralOFHE.h"
 
 
 int main() {

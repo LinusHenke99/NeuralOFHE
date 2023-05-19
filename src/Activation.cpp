@@ -1,4 +1,4 @@
-#include "Activation.h"
+#include "../include/Activation.h"
 
 
 ActivationFunction::ActivationFunction(double Min, double Max, uint32_t polyDeg, uint32_t& objCounter,

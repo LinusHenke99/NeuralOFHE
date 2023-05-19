@@ -1,4 +1,4 @@
-#include "ReLU.h"
+#include "../include/ReLU.h"
 
 // Setting initial values for static variables
 uint32_t nn::ReLU::numReLU = 0;

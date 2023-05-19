@@ -1,4 +1,5 @@
-#include "BatchNorm.h"
+#include "../include/BatchNorm.h"
+#include "LinTools.h"
 
 uint32_t nn::BatchNorm::numBatchNorm = 0;
 double nn::BatchNorm::sharedEpsilon = .0;

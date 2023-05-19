@@ -1,4 +1,5 @@
-#include "Conv2D.h"
+#include "../include/Conv2D.h"
+#include "LinTools.h"
 
 uint32_t nn::Conv2D::numConv = 0;
 

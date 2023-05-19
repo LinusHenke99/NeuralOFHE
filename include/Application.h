@@ -1,14 +1,20 @@
-//
-// Created by lchenke on 12.05.23.
-//
-
 #ifndef NEURALOFHE_APPLICATION_H
 #define NEURALOFHE_APPLICATION_H
+
+#include <vector>
+#include <memory>
 
 #include "InherOperators.h"
 
 
 class Application {
+public:
+    Application(const std::vector<std::shared_ptr<Operator>>& layers);
+
+    Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x);
+
+private:
+    std::vector<std::shared_ptr<Operator>> layers;
 
 };
 

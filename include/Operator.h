@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "LinTools.h"
 #include "openfhe.h"
 
 using matVec = std::vector<std::vector<double>>;

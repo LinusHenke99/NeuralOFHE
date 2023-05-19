@@ -1,4 +1,4 @@
-#include "AveragePool.h"
+#include "../include/AveragePool.h"
 
 
 uint32_t nn::AveragePool::numAvgPool = 0;
@@ -31,11 +31,14 @@ matVec nn::AveragePool::calcMatrix() {
 
     matVec mat(outPutSize * currentChannels);
 
-    // TODO: index parameter is not correctly set.
+    // TODO: Does not work with more than one channel
     for (uint32_t numRow=0; numRow<outPutSize; numRow++) {
         std::vector<double> row(currentBatchsize);
 
-        uint32_t index = numRow * strides + numRow / arraySize;
+        uint32_t x = numRow * strides % (arraySize-1);
+        uint32_t y = numRow * strides / (arraySize-1);
+
+        uint32_t index = x + y * arraySize;
 
         for (uint32_t i=0; i<kernelSize; i++) {
             if (i>=currentBatchsize || i+arraySize>=currentBatchsize) {

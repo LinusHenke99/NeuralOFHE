@@ -1,4 +1,4 @@
-#include "Operator.h"
+#include "../include/Operator.h"
 
 CryptoContext<DCRTPoly> Operator::context = NULL;
 uint32_t Operator::currentBatchsize = 0;
