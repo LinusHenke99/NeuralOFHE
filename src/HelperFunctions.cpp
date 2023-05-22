@@ -1,4 +1,4 @@
-#include "../include/HelperFunctions.h"
+#include "NeuralOFHE/Helperfunctions/HelperFunctions.h"
 
 
 void InitializeCryptoEnvironment(CryptoContext<DCRTPoly> context, uint32_t inputSize, uint32_t inputChannels) {

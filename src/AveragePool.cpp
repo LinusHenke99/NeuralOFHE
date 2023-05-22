@@ -1,4 +1,5 @@
-#include "../include/AveragePool.h"
+#include "NeuralOFHE/Operators/AveragePool.h"
+#include "LinTools.h"
 
 
 uint32_t nn::AveragePool::numAvgPool = 0;

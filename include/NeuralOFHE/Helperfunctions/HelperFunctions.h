@@ -2,7 +2,7 @@
 #define NEURALOFHE_HELPERFUNCTIONS_H
 
 #include <memory>
-#include "Operator.h"
+#include "../Operators/Operator.h"
 
 
 void InitializeCryptoEnvironment(CryptoContext<DCRTPoly> context, uint32_t batchSize, uint32_t inputChannels);

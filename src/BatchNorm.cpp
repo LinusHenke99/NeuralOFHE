@@ -1,4 +1,4 @@
-#include "../include/BatchNorm.h"
+#include "NeuralOFHE/Operators/BatchNorm.h"
 #include "LinTools.h"
 
 uint32_t nn::BatchNorm::numBatchNorm = 0;

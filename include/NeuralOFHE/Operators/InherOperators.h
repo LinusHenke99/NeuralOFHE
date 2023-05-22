@@ -12,5 +12,6 @@
 #include "BatchNorm.h"
 #include "AveragePool.h"
 #include "Gemm.h"
+#include "Swish.h"
 
 #endif //NEURALOFHE_INHEROPERATORS_H

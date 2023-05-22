@@ -1,4 +1,4 @@
-#include "../include/Conv2D.h"
+#include "NeuralOFHE/Operators/Conv2D.h"
 #include "LinTools.h"
 
 uint32_t nn::Conv2D::numConv = 0;

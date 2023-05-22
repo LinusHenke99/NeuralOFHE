@@ -1,4 +1,4 @@
-#include "../include/ReLU.h"
+#include "NeuralOFHE/Operators/ReLU.h"
 
 // Setting initial values for static variables
 uint32_t nn::ReLU::numReLU = 0;

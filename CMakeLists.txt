@@ -32,6 +32,7 @@ target_sources(${PROJECT_NAME}
         src/BatchNorm.cpp
         src/AveragePool.cpp
         src/Gemm.cpp
+        src/Swish.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -53,7 +54,7 @@ target_link_libraries(${PROJECT_NAME}
         ${OpenFHE_SHARED_LIBRARIES}
         )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER ../NeuralOFHE.h)
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER include/NeuralOFHE/NeuralOFHE.h)
 if (DEFINED CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     message(
             STATUS
@@ -73,21 +74,20 @@ endif()
 include(GNUInstallDirs)
 
 set(public_headers
-    NeuralOFHE.h
-    include/Activation.h
-    include/Application.h
-    include/AveragePool.h
-    include/BatchNorm.h
-    include/Conv2D.h
-    include/Gemm.h
-    include/HelperFunctions.h
-    include/InherOperators.h
-    include/Operator.h
-    include/ReLU.h
+        include/NeuralOFHE/Operators/Activation.h
+        include/NeuralOFHE/Application.h
+        include/NeuralOFHE/Operators/AveragePool.h
+        include/NeuralOFHE/Operators/BatchNorm.h
+        include/NeuralOFHE/Operators/Conv2D.h
+        include/NeuralOFHE/Operators/Gemm.h
+        include/NeuralOFHE/Helperfunctions/HelperFunctions.h
+        include/NeuralOFHE/Operators/InherOperators.h
+        include/NeuralOFHE/Operators/Operator.h
+        include/NeuralOFHE/Operators/ReLU.h
 )
 
 foreach (header ${public_headers})
-    file(RELATIVE_PATH header_file_path "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}" "${header}")
+    file(RELATIVE_PATH header_file_path "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/${header}")
     get_filename_component(header_directory_path "${header_file_path}" DIRECTORY)
     install(
         FILES ${header}
@@ -100,3 +100,35 @@ install(TARGETS ${PROJECT_NAME}
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
         INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
+# generate and install export file
+install(EXPORT "${PROJECT_NAME}Targets"
+        FILE "${PROJECT_NAME}Targets.cmake"
+        NAMESPACE ${namespace}::
+        DESTINATION cmake
+        )
+
+include(CMakePackageConfigHelpers)
+
+# generate the version file for the config file
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        VERSION "${version}"
+        COMPATIBILITY AnyNewerVersion
+)
+# create config file
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        INSTALL_DESTINATION cmake
+        )
+# install config files
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION cmake
+        )
+# generate the export targets for the build tree
+export(EXPORT "${PROJECT_NAME}Targets"
+        FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${PROJECT_NAME}Targets.cmake"
+        NAMESPACE ${namespace}::
+        )

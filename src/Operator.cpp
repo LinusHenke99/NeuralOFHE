@@ -1,4 +1,4 @@
-#include "../include/Operator.h"
+#include "NeuralOFHE/Operators/Operator.h"
 
 CryptoContext<DCRTPoly> Operator::context = NULL;
 uint32_t Operator::currentBatchsize = 0;

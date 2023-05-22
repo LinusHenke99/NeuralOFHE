@@ -1,5 +1,5 @@
 #include <iostream>
-#include "NeuralOFHE.h"
+#include "NeuralOFHE/NeuralOFHE.h"
 
 
 int main() {
