@@ -33,6 +33,7 @@ target_sources(${PROJECT_NAME}
         src/AveragePool.cpp
         src/Gemm.cpp
         src/Swish.cpp
+        src/Sigmoid.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

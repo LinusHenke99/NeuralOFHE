@@ -13,5 +13,6 @@
 #include "AveragePool.h"
 #include "Gemm.h"
 #include "Swish.h"
+#include "Sigmoid.h"
 
 #endif //NEURALOFHE_INHEROPERATORS_H
