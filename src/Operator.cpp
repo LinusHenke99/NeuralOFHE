@@ -5,11 +5,6 @@ uint32_t Operator::currentBatchsize = 0;
 uint32_t Operator::currentChannels = 0;
 
 
-Operator::Operator() {
-    Operator::isInitialized();
-}
-
-
 Operator::Operator(uint32_t& objectCounter, std::string name) {
     Operator::isInitialized();
     this->name = name;

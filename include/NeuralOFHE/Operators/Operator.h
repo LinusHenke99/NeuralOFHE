@@ -11,8 +11,6 @@ using namespace lbcrypto;
 
 class Operator {
 public:
-    Operator();
-
     Operator(uint32_t& objectCounter, std::string name);
 
     virtual Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) = 0;
