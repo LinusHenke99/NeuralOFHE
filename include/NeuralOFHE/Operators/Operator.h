@@ -15,15 +15,13 @@ public:
 
     virtual Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) = 0;
 
-    static void initialize(CryptoContext<DCRTPoly> cc, uint32_t bs, uint32_t channels);
+    static void initialize(CryptoContext<DCRTPoly> cc);
 
     void isInitialized();
 
     std::string getName();
 
 protected:
-    static uint32_t currentBatchsize;
-    static uint32_t currentChannels;
     static CryptoContext<DCRTPoly> context;
 
     std::string name;

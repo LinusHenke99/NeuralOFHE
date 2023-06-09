@@ -9,14 +9,10 @@ namespace nn {
     class ReLU : public ActivationFunction {
     public:
 
-        ReLU(double min, double max, unsigned int polyDeg=sharedPolyDeg,
-             std::string name="ReLU_" + std::to_string(numReLU));
-
-        static void SetSharedDegree(uint32_t degree);
+        ReLU(double min, double max, unsigned int polyDeg=3);
 
     private:
         static uint32_t numReLU;
-        static uint32_t sharedPolyDeg;
 
         const static std::function<double (double)> relu;
 

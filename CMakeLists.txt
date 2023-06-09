@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 # Setting up OpenFHE
 option( BUILD_STATIC OFF)
 find_package(OpenFHE REQUIRED)
-set( CMAKE_CXX_FLAGS ${OpenFHE_CXX_FLAGS} )
+set( CMAKE_CXX_FLAGS "-fPIC ${OpenFHE_CXX_FLAGS}" )
 link_directories( ${OpenFHE_LIBDIR} )
 set( CMAKE_EXE_LINKER_FLAGS ${OpenFHE_EXE_LINKER_FLAGS} )
 link_libraries( ${OpenFHE_SHARED_LIBRARIES} )
@@ -85,6 +85,8 @@ set(public_headers
         include/NeuralOFHE/Operators/InherOperators.h
         include/NeuralOFHE/Operators/Operator.h
         include/NeuralOFHE/Operators/ReLU.h
+        include/NeuralOFHE/Operators/Swish.h
+        include/NeuralOFHE/Operators/Sigmoid.h
 )
 
 foreach (header ${public_headers})

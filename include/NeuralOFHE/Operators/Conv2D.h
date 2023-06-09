@@ -5,11 +5,9 @@
 #include <vector>
 
 namespace nn {
-    // TODO: Implement a constructor, which sets the matrix according to n kernels each given as a matVec.
     class Conv2D : public Operator {
     public:
-        Conv2D(std::vector<std::vector<double>> weights, std::vector<double> bias,
-               std::string name="Conv2D_" + std::to_string(numConv));
+        Conv2D(std::vector<std::vector<double>> weights, std::vector<double> bias);
 
         Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 

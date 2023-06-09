@@ -1,8 +1,6 @@
 #include "NeuralOFHE/Operators/Operator.h"
 
 CryptoContext<DCRTPoly> Operator::context = NULL;
-uint32_t Operator::currentBatchsize = 0;
-uint32_t Operator::currentChannels = 0;
 
 
 Operator::Operator(uint32_t& objectCounter, std::string name) {
@@ -12,17 +10,14 @@ Operator::Operator(uint32_t& objectCounter, std::string name) {
 }
 
 
-void Operator::initialize(CryptoContext<lbcrypto::DCRTPoly> cc, uint32_t bs, uint32_t channels) {
+void Operator::initialize(CryptoContext<lbcrypto::DCRTPoly> cc) {
     context = cc;
-    currentBatchsize = bs;
-    currentChannels = channels;
 }
 
 
 void Operator::isInitialized() {
-    if (context == NULL && currentBatchsize == 0 && currentChannels == 0) {
-        std::cerr << "You first have to assign a Cryptocontext, an initial input size to the Operator class." << std::endl;
-        std::cerr << "Can be done by calling the InitializeCryptoEnvironment function" << std::endl;
+    if (context == NULL) {
+        std::cerr << "You first have to initialize a cryptocontext using the 'InitializeCryptoEnvironment'." << std::endl;
         exit(1);
     }
 }

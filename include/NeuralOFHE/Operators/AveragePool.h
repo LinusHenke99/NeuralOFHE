@@ -8,16 +8,13 @@
 namespace nn {
     class AveragePool : public Operator {
     public:
-        AveragePool (uint32_t kernelSize, uint32_t strides,
-                     std::string name="AvgPool_" + std::to_string(numAvgPool));
+        AveragePool(matVec matrix);
 
         Ciphertext<DCRTPoly> forward (Ciphertext<DCRTPoly> x) override;
 
         matVec getMatrix() {return matrix;}
 
     private:
-        uint32_t kernelSize, strides;
-
         matVec matrix;
         static uint32_t numAvgPool;
 

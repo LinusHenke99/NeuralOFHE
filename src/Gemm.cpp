@@ -4,7 +4,7 @@
 uint32_t nn::Gemm::numGemm = 0;
 
 
-nn::Gemm::Gemm(matVec matrix, std::vector<double> bias, std::string name) : Operator(numGemm, name) {
+nn::Gemm::Gemm(matVec matrix, std::vector<double> bias) : Operator(numGemm, "Gemm_" + std::to_string(numGemm)) {
     this->matrix = matrix;
     this->bias = bias;
 }

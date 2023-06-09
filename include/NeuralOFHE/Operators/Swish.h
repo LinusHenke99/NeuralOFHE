@@ -7,14 +7,12 @@ namespace nn {
     class Swish : public ActivationFunction {
     public:
 
-        Swish(double min, double max, unsigned int polyDeg=sharedPolyDeg,
-              std::string name="Swish_" + std::to_string(numSwish));
+        Swish(double min, double max, unsigned int polyDeg=3);
 
         void setSharedDegree(uint32_t degree);
 
     private:
         static uint32_t numSwish;
-        static uint32_t sharedPolyDeg;
 
         const static std::function<double (double)> swish;
 

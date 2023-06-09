@@ -6,12 +6,9 @@
 namespace nn {
     class BatchNorm : public Operator {
     public:
-        BatchNorm(std::vector<double> weights, std::vector<double> bias, double var, double mu,
-                  std::string name="BatchNorm_" + std::to_string(numBatchNorm), double epsilon=sharedEpsilon);
+        BatchNorm(std::vector<double> weights, std::vector<double> bias, double var, double mu, double epsilon=1e-9);
 
         Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
-
-        static void SetSharedEpsilon(double eps);
 
     private:
         std::vector<double> weights, bias;

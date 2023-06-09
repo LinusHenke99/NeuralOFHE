@@ -6,7 +6,7 @@
 namespace nn {
     class Gemm : public Operator {
     public:
-        Gemm(matVec matrix, std::vector<double> bias, std::string name="Gemm_" + std::to_string(numGemm));
+        Gemm(matVec matrix, std::vector<double> bias);
 
         Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
