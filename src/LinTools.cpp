@@ -28,8 +28,8 @@ Ciphertext<DCRTPoly> matrix_multiplication(
 ) {
     std::vector<bool> isZero;
     return parallel ?
-           matrix_multiplication_parallel(matrix, vector, context):
-           matrix_multiplication_sequential(matrix, vector, context);
+           matrix_multiplication_parallel(transpose(matrix), vector, context):
+           matrix_multiplication_sequential(transpose(matrix), vector, context);
 }
 
 
