@@ -5,7 +5,7 @@
 #include "../Operators/Operator.h"
 
 
-void InitializeCryptoEnvironment(CryptoContext<DCRTPoly> context);
+void SetContext(CryptoContext<DCRTPoly> context);
 
 
 std::vector<int> GetRotations (uint32_t batchSize);

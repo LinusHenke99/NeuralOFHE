@@ -1,7 +1,7 @@
 #include "NeuralOFHE/Helperfunctions/HelperFunctions.h"
 
 
-void InitializeCryptoEnvironment(CryptoContext<DCRTPoly> context) {
+void SetContext(CryptoContext<DCRTPoly> context) {
     Operator::initialize(context);
 }
 
@@ -15,7 +15,6 @@ std::vector<int> GetRotations (uint32_t batchSize) {
     for (unsigned int k=0; k<n2; k++) {
         resultSet.insert(k*n1);
         for (unsigned int j=0; j<n1; j++) {
-            // resultSet.insert((k*n1 + j));
             resultSet.insert(j);
         }
     }
