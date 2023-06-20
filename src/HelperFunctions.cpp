@@ -9,7 +9,16 @@ void SetContext(CryptoContext<DCRTPoly> context) {
 std::vector<int> GetRotations (uint32_t batchSize) {
     std::set<int> resultSet;
 
-    unsigned int n1 = (batchSize==0 || batchSize==1) ? 1 : 1 << (unsigned int) std::ceil(log2(batchSize));
+    unsigned int n1;
+
+    if ((int) log2(batchSize) % 2 == 0)
+        n1 = sqrt(batchSize);
+    else
+        n1 = sqrt(1 << ((int) log2(batchSize) - 1));
+
+    if (n1 < batchSize / n1)
+        n1 = batchSize / n1;
+
     unsigned int n2 = batchSize / n1;
 
     for (unsigned int k=0; k<n2; k++) {
