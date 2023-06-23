@@ -26,7 +26,6 @@ Ciphertext<DCRTPoly> matrix_multiplication(
         CryptoContext<DCRTPoly> context,
         bool parallel
 ) {
-    std::vector<bool> isZero;
     return parallel ?
            matrix_multiplication_parallel(transpose(matrix), vector, context):
            matrix_multiplication_sequential(transpose(matrix), vector, context);
@@ -153,6 +152,7 @@ Ciphertext<DCRTPoly> matrix_multiplication_parallel(const std::vector<std::vecto
                 std::vector<std::future<Ciphertext<DCRTPoly>>> tasks;
 
                 for (unsigned int j = 1; j < n1; j++) {
+                    // Only calculate sum if the diagonal is non zero
                     if (!std::all_of(diagonals[k * n1 + j].begin(), diagonals[k * n1 + j].end(), [](double x) {return x == .0;})) {
                         Plaintext pl = context->MakeCKKSPackedPlaintext(rotate_plain(diagonals[k * n1 + j], -k * n1));
                         subResult += context->EvalMult(pl, rotCache[j - 1]);
