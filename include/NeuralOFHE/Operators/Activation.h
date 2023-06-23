@@ -5,7 +5,7 @@
 
 
 /***
- * Base class for activation functions
+ * Base class for activation functions.
  */
 class ActivationFunction : public Operator{
 public:
@@ -30,7 +30,7 @@ public:
 
 protected:
     /***
-     * Minimum, maximum and degree of the polynomial needed for the Chebyshev approximation
+     * Minimum, maximum and degree of the polynomial needed for the Chebyshev approximation.
      */
     double Min, Max;
     uint32_t polyDeg;

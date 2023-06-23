@@ -6,7 +6,8 @@
 
 
 /***
- * Function that sets the context object for the entire crypto environment.
+ * Function that sets the context object for the entire crypto environment. Essentially just applies the static
+ * Operator::initialize method, but gives a more intuitive naming
  *
  * @param context Context object that should be used
  */

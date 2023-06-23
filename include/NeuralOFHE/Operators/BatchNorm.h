@@ -15,7 +15,6 @@ namespace nn {
         double var, mu, epsilon;
 
         static uint32_t numBatchNorm;
-        static double sharedEpsilon;
 
         void setParameters(std::vector<double> wei, std::vector<double> bia, double va, double m, double e);
     };

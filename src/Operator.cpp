@@ -17,7 +17,7 @@ void Operator::initialize(CryptoContext<lbcrypto::DCRTPoly> cc) {
 
 void Operator::isInitialized() {
     if (context == NULL) {
-        std::cerr << "You first have to initialize a cryptocontext using the 'InitializeCryptoEnvironment'." << std::endl;
+        std::cerr << "You first have to initialize a cryptocontext using the 'SetContext' function." << std::endl;
         exit(1);
     }
 }

@@ -45,7 +45,7 @@ public:
     void isInitialized();
 
     /***
-     * Getter function for the objects name
+     * Getter method for the objects name.
      *
      * @return name
      */
@@ -53,12 +53,12 @@ public:
 
 protected:
     /***
-     * Static variable pointing to the context object of the application
+     * Static variable pointing to the context object of the application.
      */
     static CryptoContext<DCRTPoly> context;
 
     /***
-     * Name variable which can be useful for debugging applications
+     * Name variable which can be useful for debugging applications.
      */
     std::string name;
 };
