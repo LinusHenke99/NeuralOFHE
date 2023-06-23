@@ -11,9 +11,15 @@ namespace nn {
         Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
     private:
+        /***
+         * Plaintext arguments given to the Batch-Normalization operation
+         */
         std::vector<double> weights, bias;
         double var, mu, epsilon;
 
+        /***
+         * Operation counter.
+         */
         static uint32_t numBatchNorm;
 
         void setParameters(std::vector<double> wei, std::vector<double> bia, double va, double m, double e);
