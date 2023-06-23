@@ -7,13 +7,17 @@
 namespace nn {
     class Conv2D : public Operator {
     public:
+        /***
+         * Convolutional layers can also be viewed as a matrix multiplication on a flattened input.
+         *
+         * @param weights Transformed matrix containing the Convolutional operation.
+         * @param bias Transformed biases.
+         */
         Conv2D(std::vector<std::vector<double>> weights, std::vector<double> bias);
 
         Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
     private:
-        void setParams(std::vector<std::vector<double>> weights, std::vector<double> bias);
-
         std::vector<std::vector<double>> weights;
         std::vector<double> bias;
 
