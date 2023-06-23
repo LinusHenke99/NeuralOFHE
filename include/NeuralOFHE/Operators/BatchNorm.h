@@ -21,8 +21,6 @@ namespace nn {
          * Operation counter.
          */
         static uint32_t numBatchNorm;
-
-        void setParameters(std::vector<double> wei, std::vector<double> bia, double va, double m, double e);
     };
 }
 

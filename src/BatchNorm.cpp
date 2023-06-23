@@ -4,18 +4,13 @@
 uint32_t nn::BatchNorm::numBatchNorm = 0;
 
 
-void nn::BatchNorm::setParameters(std::vector<double> wei, std::vector<double> bia, double va, double m, double e) {
-    this->weights = wei;
-    this->bias = bia;
-    this->var = va;
-    this->mu = m;
-    this->epsilon = e;
-}
-
-
 nn::BatchNorm::BatchNorm(std::vector<double> weights, std::vector<double> bias, double var,
                          double mu, double epsilon) : Operator(numBatchNorm, "BatchNorm_" + std::to_string(numBatchNorm)){
-    setParameters(weights, bias, var, mu, epsilon);
+    this->weights = weights;
+    this->bias = bias;
+    this->var = var;
+    this->mu = mu;
+    this->epsilon = epsilon;
 }
 
 
