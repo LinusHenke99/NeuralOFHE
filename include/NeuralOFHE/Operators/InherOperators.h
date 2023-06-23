@@ -1,7 +1,3 @@
-//
-// Created by lchenke on 12.05.23.
-//
-
 #ifndef NEURALOFHE_INHEROPERATORS_H
 #define NEURALOFHE_INHEROPERATORS_H
 
@@ -12,7 +8,7 @@
 #include "BatchNorm.h"
 #include "AveragePool.h"
 #include "Gemm.h"
-#include "Swish.h"
+#include "SiLU.h"
 #include "Sigmoid.h"
 
 #endif //NEURALOFHE_INHEROPERATORS_H

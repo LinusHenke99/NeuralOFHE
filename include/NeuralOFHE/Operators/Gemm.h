@@ -3,6 +3,9 @@
 
 #include "Operator.h"
 
+/***
+ * General matrix multiplication class. Rest is self explanatory
+ */
 namespace nn {
     class Gemm : public Operator {
     public:

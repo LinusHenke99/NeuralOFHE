@@ -32,7 +32,7 @@ target_sources(${PROJECT_NAME}
         src/BatchNorm.cpp
         src/AveragePool.cpp
         src/Gemm.cpp
-        src/Swish.cpp
+        src/SiLU.cpp
         src/Sigmoid.cpp
         )
 
@@ -85,7 +85,7 @@ set(public_headers
         include/NeuralOFHE/Operators/InherOperators.h
         include/NeuralOFHE/Operators/Operator.h
         include/NeuralOFHE/Operators/ReLU.h
-        include/NeuralOFHE/Operators/Swish.h
+        include/NeuralOFHE/Operators/SiLU.h
         include/NeuralOFHE/Operators/Sigmoid.h
 )
 
