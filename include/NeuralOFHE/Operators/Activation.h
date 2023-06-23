@@ -29,9 +29,18 @@ public:
     Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
 protected:
+    /***
+     * Minimum, maximum and degree of the polynomial needed for the Chebyshev approximation
+     */
     double Min, Max;
     uint32_t polyDeg;
 
+    /***
+     * Virtual method implemented in order to return the corresponding activation function as C++ lambda. This is the
+     * only member which needs implementation for inherited activation functions.
+     *
+     * @return Plain activation function
+     */
     virtual const std::function<double (double)> &getFunc() = 0;
 };
 
