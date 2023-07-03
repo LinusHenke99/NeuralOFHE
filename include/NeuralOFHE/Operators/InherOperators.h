@@ -10,5 +10,6 @@
 #include "Gemm.h"
 #include "SiLU.h"
 #include "Sigmoid.h"
+#include "BootStrapping.h"
 
 #endif //NEURALOFHE_INHEROPERATORS_H

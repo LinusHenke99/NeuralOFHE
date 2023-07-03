@@ -34,6 +34,7 @@ target_sources(${PROJECT_NAME}
         src/Gemm.cpp
         src/SiLU.cpp
         src/Sigmoid.cpp
+        src/BootStrapping.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -87,6 +88,7 @@ set(public_headers
         include/NeuralOFHE/Operators/ReLU.h
         include/NeuralOFHE/Operators/SiLU.h
         include/NeuralOFHE/Operators/Sigmoid.h
+		include/NeuralOFHE/Operators/BootStrapping.h
 )
 
 foreach (header ${public_headers})
