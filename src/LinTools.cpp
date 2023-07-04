@@ -109,11 +109,15 @@ Ciphertext<DCRTPoly> matrix_multiplication_parallel(const std::vector<std::vecto
     auto cipherPrecompute = context->EvalFastRotationPrecompute(vector);
     uint32_t M = 2 * context->GetRingDimension();
 
-    //  Calculating first sub-sum and caching all rotations of the vector variable needed later
+    //  Calculating first sub-sum and caching all rotations of the vector variable needed later. In the sequential
+    //  version the data is written by a push_back operation, this can not be done in parallel, since the order of the
+    //  vector would then be false, depending on what thread finishes first
     std::vector<Ciphertext<DCRTPoly>> rotCache(n1 - 1);
 
-#pragma omp parallel for
+    //  Adding parallelization in the form of an OpenMP for loop
+    #pragma omp parallel for
     for (unsigned int j=1; j<n1; j++) {
+        //  Adding to variables that are used by each thread in order to store separate sub results
         Plaintext subPlain;
         Ciphertext<DCRTPoly> subCipher;
 
@@ -122,18 +126,20 @@ Ciphertext<DCRTPoly> matrix_multiplication_parallel(const std::vector<std::vecto
         if (!std::all_of(diagonals[j].begin(), diagonals[j].end(), [](double x) {return x==.0;})) {
             subPlain = context->MakeCKKSPackedPlaintext(diagonals[j]);
 
-#pragma omp critical
+            //  The subResult variable should only be written to by one thread at a time
+            #pragma omp critical
             subResult += context->EvalMult(subPlain, rotation);
         }
 
-#pragma omp critical
+        //  Same goes for the rotation cache
+        #pragma omp critical
         rotCache[j-1] = rotation;
     }
 
     Ciphertext<DCRTPoly> result = subResult;
 
     //  Calculating the remaining terms in the sums
-#pragma omp parallel for
+    #pragma omp parallel for
     for (unsigned int k = 1; k < n2; k++) {
         Ciphertext<DCRTPoly> subCipher;
         Plaintext subPlain;
@@ -150,7 +156,7 @@ Ciphertext<DCRTPoly> matrix_multiplication_parallel(const std::vector<std::vecto
 
         subCipher = context->EvalRotate(subCipher, k * n1);
 
-#pragma omp critical
+        #pragma omp critical
         result += subCipher;
     }
 
