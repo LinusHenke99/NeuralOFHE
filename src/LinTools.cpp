@@ -26,9 +26,14 @@ Ciphertext<DCRTPoly> matrix_multiplication(
         CryptoContext<DCRTPoly> context,
         bool parallel
 ) {
-    return parallel ?
+    Ciphertext<DCRTPoly> result = parallel ?
            matrix_multiplication_parallel(transpose(matrix), vector, context):
            matrix_multiplication_sequential(transpose(matrix), vector, context);
+
+    uint32_t outputSize = matrix.size();
+    result->SetSlots(outputSize);
+
+    return result;
 }
 
 
@@ -45,7 +50,7 @@ Ciphertext<DCRTPoly> matrix_multiplication_sequential (const std::vector<std::ve
     unsigned int n1 = find_n1(batchSize);
     unsigned int n2 = batchSize / n1;
 
-    //  Calculating first term in the sum in order to avoid passing the private key to encrypt 0 and than later adding
+    //  Calculating first term in the sum in order to avoid passing the private key to encrypt 0 and then later adding
     //  to that via a for loop. Because of that for loops later will start at 1
     Plaintext pl = context->MakeCKKSPackedPlaintext(diagonals[0]);
     Ciphertext<DCRTPoly> subResult = context->EvalMult(pl, vector);
@@ -100,7 +105,7 @@ Ciphertext<DCRTPoly> matrix_multiplication_parallel(const std::vector<std::vecto
     unsigned int n1 = find_n1(batchSize);
     unsigned int n2 = batchSize / n1;
 
-    //  Calculating first term in the sum in order to avoid passing the private key to encrypt 0 and than later adding
+    //  Calculating first term in the sum in order to avoid passing the private key to encrypt 0 and then later adding
     //  to that via a for loop. Because of that for loops later will start at 1
     Plaintext pl = context->MakeCKKSPackedPlaintext(diagonals[0]);
     Ciphertext<DCRTPoly> subResult = context->EvalMult(pl, vector);
