@@ -30,7 +30,7 @@ Ciphertext<DCRTPoly> matrix_multiplication(
            matrix_multiplication_parallel(transpose(matrix), vector, context):
            matrix_multiplication_sequential(transpose(matrix), vector, context);
 
-    uint32_t outputSize = matrix.size();
+    uint32_t outputSize = matrix[0].size();
     result->SetSlots(outputSize);
 
     return result;
