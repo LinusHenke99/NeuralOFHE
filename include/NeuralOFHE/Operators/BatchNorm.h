@@ -6,7 +6,7 @@
 namespace nn {
     class BatchNorm : public Operator {
     public:
-        BatchNorm(std::vector<double> weights, std::vector<double> bias, double var, double mu, double epsilon=1e-9);
+        BatchNorm(std::vector<std::vector<double>> weights, std::vector<double> bias);
 
         Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
@@ -14,8 +14,8 @@ namespace nn {
         /***
          * Plaintext arguments given to the Batch-Normalization operation
          */
-        std::vector<double> weights, bias;
-        double var, mu, epsilon;
+        std::vector<double> bias;
+        matVec weights;
 
         /***
          * Operation counter.
