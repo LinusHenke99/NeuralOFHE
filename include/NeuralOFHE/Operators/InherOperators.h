@@ -2,6 +2,7 @@
 #define NEURALOFHE_INHEROPERATORS_H
 
 #include "Operator.h"
+#include "GeneralLinearOperator.h"
 
 #include "Conv2D.h"
 #include "ReLU.h"

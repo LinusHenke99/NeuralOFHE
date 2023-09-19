@@ -26,6 +26,7 @@ target_sources(${PROJECT_NAME}
 
         #   Sources that define the ML Operations on the Ciphertext
         src/Operator.cpp
+        src/GeneralLinearOperator.cpp
         src/Activation.cpp
         src/Conv2D.cpp
         src/ReLU.cpp
@@ -85,6 +86,7 @@ set(public_headers
         include/NeuralOFHE/Helperfunctions/HelperFunctions.h
         include/NeuralOFHE/Operators/InherOperators.h
         include/NeuralOFHE/Operators/Operator.h
+        include/NeuralOFHE/Operators/GeneralLinearOperator.h
         include/NeuralOFHE/Operators/ReLU.h
         include/NeuralOFHE/Operators/SiLU.h
         include/NeuralOFHE/Operators/Sigmoid.h

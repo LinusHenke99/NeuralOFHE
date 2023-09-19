@@ -1,12 +1,10 @@
 #ifndef NEURALOFHE_AVERAGEPOOL_H
 #define NEURALOFHE_AVERAGEPOOL_H
 
-#include <math.h>
-
-#include "Operator.h"
+#include "GeneralLinearOperator.h"
 
 namespace nn {
-    class AveragePool : public Operator {
+    class AveragePool : public GeneralLinearOperator {
     public:
         /***
          * Average pooling can be transformed to be a matrix multiplication. Therefore an average pooling object only
@@ -16,12 +14,7 @@ namespace nn {
          */
         AveragePool(matVec matrix);
 
-        Ciphertext<DCRTPoly> forward (Ciphertext<DCRTPoly> x) override;
-
-        matVec getMatrix() {return matrix;}
-
     private:
-        matVec matrix;
         static uint32_t numAvgPool;
     };
 }
