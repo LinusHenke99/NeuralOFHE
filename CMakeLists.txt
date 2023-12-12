@@ -91,6 +91,7 @@ set(public_headers
         include/NeuralOFHE/Operators/SiLU.h
         include/NeuralOFHE/Operators/Sigmoid.h
 		include/NeuralOFHE/Operators/BootStrapping.h
+		include/NeuralOFHE/Operators/PadOperator.h
 )
 
 foreach (header ${public_headers})

@@ -15,6 +15,11 @@ using namespace lbcrypto;
 class Operator {
 public:
     /***
+     * Standard Base constructor that does nothing.
+     */
+    Operator();
+
+    /***
      * Base constructor used to set the name of an object according to the object counter and increase that counter by
      * one.
      *
@@ -40,6 +45,25 @@ public:
     static void initialize(CryptoContext<DCRTPoly> cc);
 
     /***
+     * Static method that sets verbosity of application.
+     *
+     * @param state
+     */
+    static void setVerbosity(bool state);
+
+    /***
+     * Getter function for verbosity level of application.
+     *
+     * @return Verbosity level
+     */
+    static bool getVerbosity();
+
+    /***
+     * Static method to set test mode
+     */
+    static void setTest();
+
+    /***
      * Function that checks whether or not the context variable is pointing to NULL, i.e. not being initialized.
      */
     void isInitialized();
@@ -56,6 +80,16 @@ protected:
      * Static variable pointing to the context object of the application.
      */
     static CryptoContext<DCRTPoly> context;
+
+    /***
+     * Verbosity of application.
+     */
+    static bool verbose;
+
+    /***
+     * Testmode that allows generation of Operators without setting context
+     */
+    static bool testMode;
 
     /***
      * Name variable which can be useful for debugging applications.

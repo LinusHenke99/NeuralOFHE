@@ -16,6 +16,7 @@
 #include <future>
 
 #include "MatrixFormatting.h"
+#include "UnitTestMetadataTestSer.h"
 #include "openfhe.h"
 
 using namespace lbcrypto;
@@ -56,7 +57,7 @@ Ciphertext<DCRTPoly> matrix_multiplication_sequential(
 
 /***
  * Function that works with the same principle as matrix_multiplication_diagonals but implements parallel computing
- * TODO: This is not tested for large matrices, and there is no limitation of how many threads can be launched
+ *
  *
  * @param matrix Plaintext matrix, which should be multiplied with the vector
  * @param vector Ciphertext vector which should be multiplied

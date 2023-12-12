@@ -12,5 +12,6 @@
 #include "SiLU.h"
 #include "Sigmoid.h"
 #include "BootStrapping.h"
+#include "PadOperator.h"
 
 #endif //NEURALOFHE_INHEROPERATORS_H

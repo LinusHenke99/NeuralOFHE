@@ -1,18 +1,22 @@
 #ifndef NEURALOFHE_BATCHNORM_H
 #define NEURALOFHE_BATCHNORM_H
 
-#include "GeneralLinearOperator.h"
+#include "Operator.h"
 
 namespace nn {
-    class BatchNorm : public GeneralLinearOperator {
+    class BatchNorm : public Operator {
     public:
-        BatchNorm(std::vector<std::vector<double>> weights, std::vector<double> bias);
+        BatchNorm(std::vector<double> weights, std::vector<double> bias);
+
+        Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
     private:
         /***
          * Operation counter.
          */
         static uint32_t numBatchNorm;
+
+        std::vector<double> weights, biases;
     };
 }
 
