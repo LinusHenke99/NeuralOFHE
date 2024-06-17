@@ -28,6 +28,13 @@ public:
      */
     Ciphertext<DCRTPoly> forward(Ciphertext<DCRTPoly> x) override;
 
+    /***
+     * Method to get the polynomial degree from outside the class.
+     *
+     * @return poly degree
+     */
+    uint32_t getDeg();
+
 protected:
     /***
      * Minimum, maximum and degree of the polynomial needed for the Chebyshev approximation.

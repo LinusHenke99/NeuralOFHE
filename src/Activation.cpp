@@ -13,3 +13,8 @@ Ciphertext<DCRTPoly> ActivationFunction::forward(Ciphertext<lbcrypto::DCRTPoly> 
     std::function<double (double)> function = getFunc();
     return context->EvalChebyshevFunction(function, x, Min, Max, polyDeg);
 }
+
+
+uint32_t ActivationFunction::getDeg() {
+    return this->polyDeg;
+}

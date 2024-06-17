@@ -12,9 +12,13 @@ GeneralLinearOperator::GeneralLinearOperator(matVec weights, std::vector<double>
 }
 
 Ciphertext<DCRTPoly> GeneralLinearOperator::forward(Ciphertext<lbcrypto::DCRTPoly> x) {
+    if (verbose)
+        std::cout << "Carrying out matrix multiplication for " << name << std::endl;
     x = matrix_multiplication(weights, x, context);
 
     if (biases.size() != 0) {
+        if (verbose)
+            std::cout << "Adding biases for " << name << std::endl;
         Plaintext pl = context->MakeCKKSPackedPlaintext(biases);
         x = context->EvalAdd(x, pl);
     }
